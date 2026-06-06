@@ -582,8 +582,6 @@
     .lb-prev   { left: 32px; top: 50%; transform: translateY(-50%); }
     .lb-next   { right: 32px; top: 50%; transform: translateY(-50%); }
 
-    .mobile-only { display: none; }
-
     /* ── TABLET ──────────────────────────────────────────── */
     @media (max-width: 1024px) {
       .stats-inner { flex-direction: column; align-items: stretch; }
@@ -607,8 +605,6 @@
 
     /* ── RESPONSIVE ──────────────────────────────────────── */
     @media (max-width: 768px) {
-      .mobile-only { display: block; }
-
       nav {
         padding: 0 20px;
         height: 52px;
@@ -724,6 +720,9 @@
       <div class="gallery-item" data-index="30"><img src="Photos/More/savannah-black-31.png" alt="Savannah Black" loading="lazy" /></div>
       <div class="gallery-item" data-index="31"><img src="Photos/More/savannah-black-32.png" alt="Savannah Black" loading="lazy" /></div>
       <div class="gallery-item" data-index="32"><img src="Photos/More/savannah-black-33.png" alt="Savannah Black" loading="lazy" /></div>
+      <div class="gallery-item" data-index="33"><img src="Photos/More/savannah-black-34.png" alt="Savannah Black" loading="lazy" /></div>
+      <div class="gallery-item" data-index="34"><img src="Photos/More/savannah-black-35.png" alt="Savannah Black" loading="lazy" /></div>
+      <div class="gallery-item" data-index="35"><img src="Photos/More/savannah-black-36.png" alt="Savannah Black" loading="lazy" /></div>
     </div>
     <div class="gallery-more">
       <button class="gallery-more-btn" id="gallery-more-btn">More</button>
@@ -817,6 +816,8 @@
       'Photos/More/savannah-black-32.png',
       'Photos/More/savannah-black-33.png',
       'Photos/More/savannah-black-34.png',
+      'Photos/More/savannah-black-35.png',
+      'Photos/More/savannah-black-36.png',
     ];
 
     let current = 0;
@@ -864,10 +865,10 @@
       if (e.key === 'ArrowLeft')   showPrev();
     });
 
-    // ── Hide gallery items beyond 8 (leave mobile-only items to CSS)
+    // ── Hide gallery items beyond 8
     const galleryItems = document.querySelectorAll('.gallery-item');
     galleryItems.forEach((item, i) => {
-      if (i >= 8 && !item.classList.contains('mobile-only')) item.style.display = 'none';
+      if (i >= 8) item.style.display = 'none';
     });
 
     // ── More button → open overlay with all photos
