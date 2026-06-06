@@ -667,7 +667,7 @@
   <nav>
     <a href="#hero" class="nav-name">Savannah Black</a>
     <div class="nav-links">
-      <a href="#portfolio">Portfolio</a>
+      <a href="#portfolio" id="nav-portfolio">Portfolio</a>
       <a href="#stats">Stats</a>
       <a href="#contact">Contact</a>
     </div>
@@ -890,9 +890,16 @@
       moreGrid.appendChild(div);
     });
 
-    moreBtn.addEventListener('click', () => {
+    function openMoreOverlay() {
       moreOverlay.classList.add('open');
       document.body.style.overflow = 'hidden';
+    }
+
+    moreBtn.addEventListener('click', openMoreOverlay);
+
+    document.getElementById('nav-portfolio').addEventListener('click', e => {
+      e.preventDefault();
+      openMoreOverlay();
     });
 
     moreClose.addEventListener('click', () => {
