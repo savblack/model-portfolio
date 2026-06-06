@@ -434,9 +434,10 @@
 
     .stats-grid {
       display: grid;
-      grid-template-columns: auto auto;
+      grid-template-columns: auto 1fr;
       gap: 0;
       border-top: none;
+      width: 100%;
     }
 
     .stat-row {
@@ -594,7 +595,7 @@
 
       #portfolio .section-label { padding: 0 20px; height: 72px; }
 
-      .stats-inner { flex-direction: column; }
+      .stats-inner { flex-direction: column; align-items: stretch; }
 
       .stats-left {
         border-right: none;
