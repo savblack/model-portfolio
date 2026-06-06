@@ -574,6 +574,25 @@
 
     .mobile-only { display: none; }
 
+    /* ── TABLET ──────────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .stats-inner { flex-direction: column; align-items: stretch; }
+
+      .stats-left {
+        border-right: none;
+        border-bottom: none;
+        padding: 0 48px 48px;
+      }
+
+      .stats-right { padding: 48px 48px 60px; }
+
+      .stats-grid { width: 100%; }
+
+      .stat-value { text-align: right; }
+
+      .contact-heading { margin-top: 24px; }
+    }
+
     /* ── RESPONSIVE ──────────────────────────────────────── */
     @media (max-width: 768px) {
       .mobile-only { display: block; }
