@@ -402,7 +402,17 @@
     .stats-left {
       flex: 1;
       padding: 0 70px 60px;
-      border-right: 1px solid rgba(255,255,255,0.1);
+      position: relative;
+    }
+
+    .stats-left::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 24px;
+      bottom: 0;
+      width: 1px;
+      background: rgba(255,255,255,0.1);
     }
 
     .stats-right {
