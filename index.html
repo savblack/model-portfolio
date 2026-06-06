@@ -574,27 +574,52 @@
 
     /* ── RESPONSIVE ──────────────────────────────────────── */
     @media (max-width: 768px) {
-      nav { padding: 20px 24px; }
-      section { padding: 80px 24px; }
+      nav {
+        padding: 0 20px;
+        height: 52px;
+      }
 
-      .hero-text { left: 24px; right: 24px; bottom: 48px; }
+      .nav-links { gap: 20px; }
+      .nav-links a { font-size: 9px; }
 
-      .gallery { gap: 3px; padding: 0 3px; }
-      .gallery-item:nth-child(6n+1),
-      .gallery-item:nth-child(6n+2) { grid-column: span 6; }
-      .gallery-item:nth-child(6n+3),
-      .gallery-item:nth-child(6n+4),
-      .gallery-item:nth-child(6n+5) { grid-column: span 4; }
-      .gallery-item:nth-child(6n+6) { grid-column: span 12; aspect-ratio: 4/3; }
+      section { padding: 80px 20px; }
 
-      #portfolio .section-label { padding: 0 24px; }
+      .hero-text { left: 20px; right: 20px; bottom: 36px; }
+      .scroll-hint { right: 20px; bottom: 20px; }
+
+      .gallery {
+        grid-template-columns: 1fr 1fr;
+        gap: 3px;
+        padding: 0 3px;
+      }
+
+      #portfolio .section-label { padding: 0 20px; height: 72px; }
+
+      .stats-inner { flex-direction: column; }
+
+      .stats-left {
+        border-right: none;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        padding: 0 24px 48px;
+      }
+
+      .stats-right { padding: 48px 24px 60px; }
+
+      #stats .section-label { height: 72px; font-size: 16px; }
+
+      .contact-heading {
+        margin-top: 24px;
+        font-size: clamp(28px, 8vw, 48px);
+      }
+
+      .more-overlay-grid { grid-template-columns: repeat(2, 1fr); }
+      .more-overlay-header { padding: 16px 20px; }
 
       .lb-prev { left: 12px; }
       .lb-next { right: 12px; }
-      .lb-close { right: 24px; top: 20px; }
+      .lb-close { right: 20px; top: 16px; }
 
-      #contact { padding: 100px 24px; }
-      footer { padding: 24px; }
+      footer { padding: 24px 20px; }
     }
   </style>
 </head>
