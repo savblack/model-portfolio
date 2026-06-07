@@ -17,5 +17,5 @@
       }
     </style>
   </defs>
-  <text x="50" y="68" text-anchor="middle" dominant-baseline="middle">SB</text>
+  <text x="50" y="50" text-anchor="middle" dominant-baseline="central">SB</text>
 </svg>
