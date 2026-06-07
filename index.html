@@ -76,7 +76,6 @@
       letter-spacing: 0.25em;
       text-transform: uppercase;
       color: var(--black);
-      position: relative;
       opacity: 0;
       transform: translateX(-8px);
       transition: opacity 0.6s ease, transform 0.6s ease;
@@ -90,7 +89,6 @@
     .nav-links {
       display: flex;
       gap: 32px;
-      position: relative;
     }
 
     .nav-links a {
@@ -193,7 +191,7 @@
     }
 
     @keyframes fadeUp {
-      to { opacity: 1; transform: translateY(0); }
+      to { opacity: 1; }
     }
 
     /* ── SCROLL HINT ─────────────────────────────────────── */
@@ -231,7 +229,6 @@
       font-size: 18px;
       text-transform: none;
       color: rgba(255,255,255,0.6);
-      opacity: 1;
       display: flex;
       align-items: center;
       height: 100px;
@@ -242,7 +239,6 @@
     /* ── PORTFOLIO ───────────────────────────────────────── */
     #portfolio {
       padding: 0 0 48px;
-      background: var(--white);
     }
 
     #portfolio .section-label {
@@ -336,7 +332,6 @@
       align-items: center;
       justify-content: space-between;
       padding: 24px 48px;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
     }
 
     .more-overlay-title {
@@ -542,10 +537,6 @@
 
       .stats-right { padding: 48px 48px 60px; }
 
-      .stats-grid { width: 100%; }
-
-      .stat-value { text-align: right; }
-
       .contact-heading { margin-top: 24px; }
 
       .more-overlay-grid { grid-template-columns: repeat(2, 1fr); }
@@ -665,7 +656,6 @@
   <section id="stats">
     <div class="stats-inner">
 
-      <!-- Left: Comp Card -->
       <div class="stats-left">
         <span class="section-label">Stats</span>
         <div class="stats-grid">
@@ -680,7 +670,6 @@
         </div>
       </div>
 
-      <!-- Right: Get In Touch -->
       <div class="stats-right">
         <span class="section-label">Contact</span>
         <h2 class="contact-heading">Let's Work<br><span class="contact-heading-bold">Together</span></h2>
@@ -757,7 +746,10 @@
       lbImg.src = photos[current];
     }
 
-    document.querySelectorAll('.gallery-item').forEach(item => {
+    // ── Gallery items
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    galleryItems.forEach((item, i) => {
+      if (i >= 8) item.style.display = 'none';
       item.addEventListener('click', () => openLightbox(+item.dataset.index));
     });
 
@@ -772,18 +764,12 @@
     // ── Keyboard navigation
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape') {
-        if (lightbox.classList.contains('open'))   closeLightbox();
+        if (lightbox.classList.contains('open'))    closeLightbox();
         if (moreOverlay.classList.contains('open')) closeMoreOverlay();
       }
       if (!lightbox.classList.contains('open')) return;
       if (e.key === 'ArrowRight') showNext();
       if (e.key === 'ArrowLeft')  showPrev();
-    });
-
-    // ── Hide gallery items beyond 8
-    const galleryItems = document.querySelectorAll('.gallery-item');
-    galleryItems.forEach((item, i) => {
-      if (i >= 8) item.style.display = 'none';
     });
 
     // ── More overlay
