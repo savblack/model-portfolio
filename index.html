@@ -444,9 +444,8 @@
       font-style: italic;
       letter-spacing: -0.02em;
       text-transform: uppercase;
-      line-height: 0.95;
-      margin-bottom: 56px;
       line-height: 1.1;
+      margin-bottom: 56px;
     }
 
     .stats-grid {
@@ -693,7 +692,7 @@
   <!-- PORTFOLIO -->
   <section id="portfolio">
     <span class="section-label">Portfolio</span>
-    <div class="gallery" id="gallery" data-show="8">
+    <div class="gallery" id="gallery">
       <div class="gallery-item" data-index="0"><img src="Photos/Main/savannah-black-01.webp" alt="Savannah Black" loading="lazy" /></div>
       <div class="gallery-item" data-index="1"><img src="Photos/Main/savannah-black-02.webp" alt="Savannah Black" loading="lazy" /></div>
       <div class="gallery-item" data-index="2"><img src="Photos/Main/savannah-black-03.webp" alt="Savannah Black" loading="lazy" /></div>
@@ -707,17 +706,15 @@
       <div class="gallery-item" data-index="10"><img src="Photos/More/savannah-black-14.webp" alt="Savannah Black" loading="lazy" /></div>
       <div class="gallery-item" data-index="11"><img src="Photos/More/savannah-black-15.webp" alt="Savannah Black" loading="lazy" /></div>
       <div class="gallery-item" data-index="12"><img src="Photos/More/savannah-black-16.webp" alt="Savannah Black" loading="lazy" /></div>
-      <div class="gallery-item" data-index="14"><img src="Photos/More/savannah-black-18.webp" alt="Savannah Black" loading="lazy" /></div>
-      <div class="gallery-item" data-index="15"><img src="Photos/More/savannah-black-19.webp" alt="Savannah Black" loading="lazy" /></div>
-      <div class="gallery-item" data-index="16"><img src="Photos/More/savannah-black-20.webp" alt="Savannah Black" loading="lazy" /></div>
-      <div class="gallery-item" data-index="17"><img src="Photos/More/savannah-black-24.webp" alt="Savannah Black" loading="lazy" /></div>
-      <div class="gallery-item" data-index="18"><img src="Photos/More/savannah-black-25.webp" alt="Savannah Black" loading="lazy" /></div>
-      <div class="gallery-item" data-index="19"><img src="Photos/More/savannah-black-26.webp" alt="Savannah Black" loading="lazy" /></div>
-      <div class="gallery-item" data-index="20"><img src="Photos/More/savannah-black-27.webp" alt="Savannah Black" loading="lazy" /></div>
-      <div class="gallery-item" data-index="21"><img src="Photos/More/savannah-black-29.webp" alt="Savannah Black" loading="lazy" /></div>
-      <div class="gallery-item" data-index="22"><img src="Photos/More/savannah-black-31.webp" alt="Savannah Black" loading="lazy" /></div>
-      <div class="gallery-item" data-index="23"><img src="Photos/More/savannah-black-32.webp" alt="Savannah Black" loading="lazy" /></div>
-      <div class="gallery-item" data-index="24"><img src="Photos/More/savannah-black-36.webp" alt="Savannah Black" loading="lazy" /></div>
+      <div class="gallery-item" data-index="13"><img src="Photos/More/savannah-black-18.webp" alt="Savannah Black" loading="lazy" /></div>
+      <div class="gallery-item" data-index="14"><img src="Photos/More/savannah-black-20.webp" alt="Savannah Black" loading="lazy" /></div>
+      <div class="gallery-item" data-index="15"><img src="Photos/More/savannah-black-24.webp" alt="Savannah Black" loading="lazy" /></div>
+      <div class="gallery-item" data-index="16"><img src="Photos/More/savannah-black-26.webp" alt="Savannah Black" loading="lazy" /></div>
+      <div class="gallery-item" data-index="17"><img src="Photos/More/savannah-black-27.webp" alt="Savannah Black" loading="lazy" /></div>
+      <div class="gallery-item" data-index="18"><img src="Photos/More/savannah-black-29.webp" alt="Savannah Black" loading="lazy" /></div>
+      <div class="gallery-item" data-index="19"><img src="Photos/More/savannah-black-31.webp" alt="Savannah Black" loading="lazy" /></div>
+      <div class="gallery-item" data-index="20"><img src="Photos/More/savannah-black-32.webp" alt="Savannah Black" loading="lazy" /></div>
+      <div class="gallery-item" data-index="21"><img src="Photos/More/savannah-black-36.webp" alt="Savannah Black" loading="lazy" /></div>
     </div>
     <div class="gallery-more">
       <button class="gallery-more-btn" id="gallery-more-btn">More</button>
@@ -791,10 +788,8 @@
       'Photos/More/savannah-black-15.webp',
       'Photos/More/savannah-black-16.webp',
       'Photos/More/savannah-black-18.webp',
-      'Photos/More/savannah-black-19.webp',
       'Photos/More/savannah-black-20.webp',
       'Photos/More/savannah-black-24.webp',
-      'Photos/More/savannah-black-25.webp',
       'Photos/More/savannah-black-26.webp',
       'Photos/More/savannah-black-27.webp',
       'Photos/More/savannah-black-29.webp',
@@ -841,11 +836,15 @@
       if (e.target === lightbox) closeLightbox();
     });
 
+    // ── Keyboard navigation
     document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        if (lightbox.classList.contains('open'))   closeLightbox();
+        if (moreOverlay.classList.contains('open')) closMoreOverlay();
+      }
       if (!lightbox.classList.contains('open')) return;
-      if (e.key === 'Escape')      closeLightbox();
-      if (e.key === 'ArrowRight')  showNext();
-      if (e.key === 'ArrowLeft')   showPrev();
+      if (e.key === 'ArrowRight') showNext();
+      if (e.key === 'ArrowLeft')  showPrev();
     });
 
     // ── Hide gallery items beyond 8
@@ -854,11 +853,21 @@
       if (i >= 8) item.style.display = 'none';
     });
 
-    // ── More button → open overlay with all photos
-    const moreBtn    = document.getElementById('gallery-more-btn');
+    // ── More overlay
+    const moreBtn     = document.getElementById('gallery-more-btn');
     const moreOverlay = document.getElementById('more-overlay');
-    const moreGrid   = document.getElementById('more-overlay-grid');
-    const moreClose  = document.getElementById('more-overlay-close');
+    const moreGrid    = document.getElementById('more-overlay-grid');
+    const moreClose   = document.getElementById('more-overlay-close');
+
+    function openMoreOverlay() {
+      moreOverlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closMoreOverlay() {
+      moreOverlay.classList.remove('open');
+      document.body.style.overflow = '';
+    }
 
     // Build overlay grid from photos array
     photos.forEach((src, i) => {
@@ -873,28 +882,12 @@
       moreGrid.appendChild(div);
     });
 
-    function openMoreOverlay() {
-      moreOverlay.classList.add('open');
-      document.body.style.overflow = 'hidden';
-    }
-
     moreBtn.addEventListener('click', openMoreOverlay);
+    moreClose.addEventListener('click', closMoreOverlay);
 
     document.getElementById('nav-portfolio').addEventListener('click', e => {
       e.preventDefault();
       openMoreOverlay();
-    });
-
-    moreClose.addEventListener('click', () => {
-      moreOverlay.classList.remove('open');
-      document.body.style.overflow = '';
-    });
-
-    document.addEventListener('keydown', e => {
-      if (e.key === 'Escape' && moreOverlay.classList.contains('open')) {
-        moreOverlay.classList.remove('open');
-        document.body.style.overflow = '';
-      }
     });
 
     // ── Hero letter-by-letter reveal
