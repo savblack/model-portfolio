@@ -66,13 +66,9 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 48px;
+      padding: 16px 48px 0;
       height: 64px;
-      padding-top: 16px;
-      mix-blend-mode: normal;
     }
-
-    nav::before { display: none; }
 
     .nav-name {
       font-family: var(--sans);
@@ -402,8 +398,6 @@
     .stats-inner {
       display: flex;
       align-items: stretch;
-      gap: 0;
-      padding: 0;
     }
 
     .stats-left {
@@ -429,35 +423,15 @@
       flex-direction: column;
       align-items: flex-start;
       justify-content: flex-start;
-      gap: 0;
     }
-
 
     .contact-heading-bold { font-weight: 700; }
     .stats-right .section-label { margin-bottom: 0; }
-    .stats-right .contact-meta { margin-top: 0; }
-
-    .stats-heading {
-      font-family: 'ZalandoSansExpanded', 'Migra', var(--serif);
-      font-size: clamp(22px, 3vw, 40px);
-      font-weight: 400;
-      font-style: italic;
-      letter-spacing: -0.02em;
-      text-transform: uppercase;
-      line-height: 1.1;
-      margin-bottom: 56px;
-    }
 
     .stats-grid {
       display: grid;
       grid-template-columns: auto 1fr;
-      gap: 0;
-      border-top: none;
       width: 100%;
-    }
-
-    .stat-row {
-      display: contents;
     }
 
     .stat-label,
@@ -475,26 +449,6 @@
 
     .stat-label { color: rgba(255,255,255,0.45); }
     .stat-value { font-weight: 400; font-family: 'ZalandoSansExpanded', var(--sans); text-align: right; }
-
-    /* ── CONTACT ─────────────────────────────────────────── */
-    #contact {
-      display: none;
-    }
-
-    #contact .section-label {
-      color: rgba(255,255,255,0.55);
-      font-family: var(--serif);
-      font-style: italic;
-      font-size: 20px;
-      letter-spacing: 0.05em;
-      text-transform: none;
-      text-align: left;
-    }
-
-    .stats-heading-last {
-      font-weight: 700;
-      font-style: italic;
-    }
 
     .contact-heading {
       font-family: 'ZalandoSansExpanded', 'Migra', var(--sans);
@@ -524,13 +478,6 @@
     }
 
     .contact-btn:hover { color: var(--white); }
-
-    .contact-meta {
-      font-size: 13px;
-      letter-spacing: 0.15em;
-      color: rgba(255,255,255,0.35);
-      line-height: 2.2;
-    }
 
     /* ── FOOTER ──────────────────────────────────────────── */
     footer {
@@ -592,11 +539,9 @@
     @media (max-width: 1024px) {
       .stats-inner { flex-direction: column; align-items: stretch; }
 
-      .stats-left {
-        border-right: none;
-        border-bottom: none;
-        padding: 60px 48px 48px;
-      }
+      .stats-left::after { display: none; }
+
+      .stats-left { padding: 60px 48px 48px; }
 
       .stats-right { padding: 48px 48px 60px; }
 
@@ -632,26 +577,13 @@
 
       #portfolio .section-label { padding: 0 20px; height: 72px; }
 
-      .stats-inner { flex-direction: column; align-items: stretch; }
-
-      .stats-left {
-        border-right: none;
-        border-bottom: none;
-        padding: 60px 24px 48px;
-      }
+      .stats-left { padding: 60px 24px 48px; }
 
       .stats-right { padding: 48px 24px 60px; }
 
-      .stat-value { text-align: right; }
-
       #stats .section-label { height: 72px; font-size: 16px; }
 
-      .contact-heading {
-        margin-top: 24px;
-        font-size: clamp(28px, 8vw, 48px);
-      }
-
-      .more-overlay-grid { grid-template-columns: repeat(2, 1fr); }
+      .contact-heading { font-size: clamp(28px, 8vw, 48px); }
       .more-overlay-header { padding: 16px 20px; }
 
       .lb-prev { left: 12px; }
